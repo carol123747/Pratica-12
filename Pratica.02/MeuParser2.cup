@@ -1,0 +1,20 @@
+terminal IF, ELSE, ID, MENOR, ATRIB, PARENTESQ, PARENTDIR, PTVIRG;
+terminal Integer INTEIRO;
+
+non terminal programa, comando, condicional, atribuicao;
+
+start with programa;
+
+programa ::= comando ;
+
+comando ::= condicional | atribuicao ;
+
+condicional ::= IF PARENTESQ ID:i MENOR INTEIRO:n PARENTDIR atribuicao:a ELSE atribuicao:b
+  {: 
+     System.out.println("if (" + i + " < " + n + ") { " + a + "; } else { " + b + "; }");
+  :}
+  ;
+
+atribuicao ::= ID:id ATRIB INTEIRO:i PTVIRG
+  {: RESULT = id + " = " + i; :}
+  ;

@@ -1,0 +1,21 @@
+terminal DO, COLCHESQ, COLCHDIR, INC, PTVIRG, MENOR, ATRIB, OUT, PARENTESQ, PARENTDIR;
+terminal Integer INTEIRO;
+terminal ID;
+
+non terminal comando, atribuicao, expr, repeticao;
+
+start with comando;
+
+comando ::= repeticao;
+
+atribuicao ::= ID:id ATRIB INTEIRO:i PTVIRG
+  {: RESULT = id + " = " + i; :}
+  ;
+
+expr ::= ID:id MENOR INTEIRO:i PTVIRG {: RESULT = id + " < " + i; :} ;
+
+repeticao ::= DO COLCHESQ atribuicao:a expr:e ID:i INC COLCHDIR OUT PARENTESQ ID:o PARENTDIR PTVIRG
+  {: 
+    System.out.println("for (" + a + " " + e + "; " + i + "++) out(" + o + ");");
+  :}
+  ;

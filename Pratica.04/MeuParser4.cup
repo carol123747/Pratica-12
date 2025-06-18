@@ -1,0 +1,16 @@
+terminal A_ABRE, A_FECHA, IMG, HREF, SRC, ATRIB, ASPAS, FECHA_TAG, FECHA_AUTOCOMPLETE;
+terminal TEXTO;
+
+non terminal html, tag_a, tag_img;
+
+start with html;
+
+html ::= tag_a | tag_img ;
+
+tag_a ::= A_ABRE HREF ATRIB ASPAS TEXTO ASPAS FECHA_TAG TEXTO A_FECHA
+    {: System.out.println("<a href=\"" + $5 + "\">" + $8 + "</a>"); :}
+    ;
+
+tag_img ::= IMG SRC ATRIB ASPAS TEXTO ASPAS FECHA_AUTOCOMPLETE
+    {: System.out.println("<img src=\"" + $5 + "\" />"); :}
+    ;
