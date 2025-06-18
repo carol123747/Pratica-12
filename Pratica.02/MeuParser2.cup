@@ -1,20 +1,39 @@
-terminal IF, ELSE, ID, MENOR, ATRIB, PARENTESQ, PARENTDIR, PTVIRG;
-terminal Integer INTEIRO;
+import java_cup.runtime.*;
 
-non terminal programa, comando, condicional, atribuicao;
+parser code {:
+  public static void main(String[] args) throws Exception {
+    if (args.length == 0) {
+      System.out.println("Uso: java MeuParser2 <arquivo>");
+      return;
+    }
+    java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(args[0]));
+    MeuParser2 parser = new MeuParser2(new MeuScanner2(reader));
+    parser.parse();
+  }
+:}
 
-start with programa;
 
-programa ::= comando ;
+// terminais
+terminal IF, ELSE, ID, MENOR, ATRIB, PARENTESQ, PARENTDIR, PTVIRG; 
+terminal Integer INTEIRO; 
 
-comando ::= condicional | atribuicao ;
+// não terminais
+non terminal programa, comando, condicional, atribuicao; 
 
+start with programa; //ponto de partida 
+
+programa ::= comando ; 
+
+comando ::= condicional | atribuicao ; // condicional ou uma atribuição
+
+// Regra para uma condicional
 condicional ::= IF PARENTESQ ID:i MENOR INTEIRO:n PARENTDIR atribuicao:a ELSE atribuicao:b
   {: 
-     System.out.println("if (" + i + " < " + n + ") { " + a + "; } else { " + b + "; }");
+     System.out.println("if (" + i + " < " + n + ") { " + a + "; } else { " + b + "; }"); //estrutura da condicional
   :}
   ;
 
+// Regra para uma atribuição
 atribuicao ::= ID:id ATRIB INTEIRO:i PTVIRG
-  {: RESULT = id + " = " + i; :}
+  {: RESULT = id + " = " + i; :} //atribuição
   ;

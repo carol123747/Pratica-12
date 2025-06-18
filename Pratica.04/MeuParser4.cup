@@ -1,3 +1,17 @@
+import java_cup.runtime.*;
+
+parser code {:
+  public static void main(String[] args) throws Exception {
+    if (args.length == 0) {
+      System.out.println("Uso: java MeuParser4 <arquivo>");
+      return;
+    }
+    java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(args[0]));
+    MeuParser4 parser = new MeuParser4(new MeuScanner4(reader));
+    parser.parse();
+  }
+:}
+
 terminal A_ABRE, A_FECHA, IMG, HREF, SRC, ATRIB, ASPAS, FECHA_TAG, FECHA_AUTOCOMPLETE;
 terminal TEXTO;
 

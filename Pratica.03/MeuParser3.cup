@@ -1,3 +1,18 @@
+import java_cup.runtime.*;
+
+parser code {:
+  public static void main(String[] args) throws Exception {
+    if (args.length == 0) {
+      System.out.println("Uso: java MeuParser3 <arquivo>");
+      return;
+    }
+    java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(args[0]));
+    MeuParser3 parser = new MeuParser3(new MeuScanner3(reader));
+    parser.parse();
+  }
+:}
+
+
 terminal DO, COLCHESQ, COLCHDIR, INC, PTVIRG, MENOR, ATRIB, OUT, PARENTESQ, PARENTDIR;
 terminal Integer INTEIRO;
 terminal ID;
