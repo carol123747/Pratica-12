@@ -3,7 +3,7 @@ import java_cup.runtime.*;
 parser code {:
   public static void main(String[] args) throws Exception {
     if (args.length == 0) {
-      System.out.println("Uso: java MeuParser3 <arquivo>");
+      System.out.println("Uso: java MeuParser3 <entrada.txt>");
       return;
     }
     java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(args[0]));
