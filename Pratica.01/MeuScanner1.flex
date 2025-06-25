@@ -1,14 +1,20 @@
+import java_cup.runtime.Symbol;
+
+%%
+
+// Diretivas:
 %cup
 %class MeuScanner1
 %unicode
 %line
 %column
 
+//macros
 digit = [0-9] // define o que é digito
 int = {digit}+  //define oq são inteiros
 
 %%
-
+//para  reconhecer os tokens
 {int}       { return new Symbol(sym.INTEIRO, yyline, yycolumn, Integer.valueOf(yytext())); }  // inteiro
 "+"         { return new Symbol(sym.MAIS); }                                                  // +
 "-"         { return new Symbol(sym.MENOS); }                                                 // -
