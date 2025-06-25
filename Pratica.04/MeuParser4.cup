@@ -3,7 +3,7 @@ import java_cup.runtime.*;
 parser code {:
   public static void main(String[] args) throws Exception {
     if (args.length == 0) {
-      System.out.println("Uso: java MeuParser4 <arquivo>");
+      System.out.println("Uso: java MeuParser4 <entrada.html>");
       return;
     }
     java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(args[0]));
@@ -12,19 +12,20 @@ parser code {:
   }
 :}
 
+//terminais
 terminal A_ABRE, A_FECHA, IMG, HREF, SRC, ATRIB, ASPAS, FECHA_TAG, FECHA_AUTOCOMPLETE;
 terminal TEXTO;
 
-non terminal html, tag_a, tag_img;
+non terminal html, tag_a, tag_img; //nao terminais
 
-start with html;
+start with html; // onde começa
 
 html ::= tag_a | tag_img ;
 
-tag_a ::= A_ABRE HREF ATRIB ASPAS TEXTO ASPAS FECHA_TAG TEXTO A_FECHA
+tag_a ::= A_ABRE HREF ATRIB ASPAS TEXTO ASPAS FECHA_TAG TEXTO A_FECHA      //organização pra tag de link e as outras dentro
     {: System.out.println("<a href=\"" + link + "\">" + texto + "</a>"); :}
     ;
 
-tag_img ::= IMG SRC ATRIB ASPAS TEXTO ASPAS FECHA_AUTOCOMPLETE
+tag_img ::= IMG SRC ATRIB ASPAS TEXTO ASPAS FECHA_AUTOCOMPLETE            //organização pra tag de imagem e as outras dentro
     {: System.out.println("<img src=\"" + src + "\" />"); :}
     ;
