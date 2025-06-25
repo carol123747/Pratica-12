@@ -1,13 +1,19 @@
+import java_cup.runtime.Symbol;
+
+%%
+
+// Diretivas:
 %cup
 %class MeuScanner2
 %unicode
 %line
 %column
 
+//macro
 id = [a-zA-Z_][a-zA-Z_0-9]*
 
 %%
-
+// para reconhece os tokens
 { id }         { return new Symbol(sym.ID, yyline, yycolumn, yytext()); }
 [0-9]+         { return new Symbol(sym.INTEIRO, yyline, yycolumn, Integer.valueOf(yytext())); }
 
