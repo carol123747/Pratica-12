@@ -22,9 +22,9 @@ start with html;
 html ::= tag_a | tag_img ;
 
 tag_a ::= A_ABRE HREF ATRIB ASPAS TEXTO ASPAS FECHA_TAG TEXTO A_FECHA
-    {: System.out.println("<a href=\"" + $5 + "\">" + $8 + "</a>"); :}
+    {: System.out.println("<a href=\"" + link + "\">" + texto + "</a>"); :}
     ;
 
 tag_img ::= IMG SRC ATRIB ASPAS TEXTO ASPAS FECHA_AUTOCOMPLETE
-    {: System.out.println("<img src=\"" + $5 + "\" />"); :}
+    {: System.out.println("<img src=\"" + src + "\" />"); :}
     ;
