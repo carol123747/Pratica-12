@@ -4,7 +4,7 @@ import java_cup.runtime.Symbol;
 
 //diretivas 
 %cup                              //CUP
-%class MeuScanner4                //nome da classe 
+%class MeuScanner4                
 %unicode                          //unicode
 %line                             //linhas
 %column                           //colunas
